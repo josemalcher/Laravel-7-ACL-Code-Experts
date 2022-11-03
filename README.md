@@ -175,7 +175,7 @@ composer create-project --prefer-dist laravel/laravel:^7.0 forum
 
 ## <a name="parte11">11 - 09 - Dependências do Front</a>
 
-
+- [https://laravel.com/docs/7.x/frontend](https://laravel.com/docs/7.x/frontend)
 
 [Voltar ao Índice](#indice)
 
