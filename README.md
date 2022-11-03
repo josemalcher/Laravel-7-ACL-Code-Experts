@@ -137,7 +137,9 @@ Aprenda a Usar ACL do Laravel por meio da criação de um Fórum & Gerenciamento
 
 ## <a name="parte7">7 - 05 - Iniciando Projeto</a>
 
-
+```
+composer create-project --prefer-dist laravel/laravel:^7.0 forum
+```
 
 [Voltar ao Índice](#indice)
 
