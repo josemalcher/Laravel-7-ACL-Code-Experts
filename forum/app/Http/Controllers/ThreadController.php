@@ -26,9 +26,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $thread = $this->thread->paginate(10);
+        $threads = $this->thread->paginate(10);
 
-        return view('thread.index', compact('thread'));
+        return view('threads.index', compact('threads'));
     }
 
     /**
@@ -40,7 +40,7 @@ class ThreadController extends Controller
     {
 
 
-        return view('thread.create');
+        return view('threads.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('thread.edit', $id);
+        return redirect()->route('threads.edit', $id);
     }
 
     /**
@@ -79,7 +79,7 @@ class ThreadController extends Controller
     public function edit($id)
     {
         $thread = $this->thread->find($id);
-        return view('thread.edit', compact('thread'));
+        return view('threads.edit', compact('thread'));
     }
 
     /**
