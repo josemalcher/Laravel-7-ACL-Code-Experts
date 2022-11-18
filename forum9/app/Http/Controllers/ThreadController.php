@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Thread;
 use Illuminate\Http\Request;
 
+
 class ThreadController extends Controller
 {
     private $thread;
@@ -12,7 +13,7 @@ class ThreadController extends Controller
     /**
      * @param $thread
      */
-    public function __construct(Thread $thread)
+    public function __construct(\App\Models\Thread $thread)
     {
         $this->thread = $thread;
     }
