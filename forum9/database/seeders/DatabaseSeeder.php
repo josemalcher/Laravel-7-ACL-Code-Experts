@@ -16,9 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+//        \App\Models\User::factory()->create([
+//            'name' => 'Test User',
+//            'email' => 'test@example.com',
+//        ]);
+
+        \App\Models\User::factory(4)->create()->each(function ($user){
+            $thread = \App\Models\Thread::factory(3)->make();
+
+            $user->threads()->saveMany($thread);
+        });
+
     }
 }
