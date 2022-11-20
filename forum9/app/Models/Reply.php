@@ -9,7 +9,7 @@ class Reply extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['reply'];
+    protected $fillable = ['reply', 'user_id'];
 
     public function thread()
     {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ReplyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,5 @@ Route::resource('threads', ThreadController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/replies/store', [App\Http\Controllers\ReplyController::class, 'store'])->name('replies.store');
