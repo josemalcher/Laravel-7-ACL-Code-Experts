@@ -16,14 +16,18 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sn btn-primary">Editar</a>
+                    <a href="#" class="btn btn-sn btn-danger"
+                       onclick="event.preventDefault()
+                       document.querySelector('form.thread-rm').submit()">
+                        Remover</a>
 
-                    <form action="{{route('threads.destroy', $thread->slug)}}" method="post">
+                    <form action="{{route('threads.destroy', $thread->slug)}}"
+                          class="thread-rm"
+                          method="post" style="display: none">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger">Remover</button>
+
                     </form>
-
-
                 </div>
             </div>
             <hr>
