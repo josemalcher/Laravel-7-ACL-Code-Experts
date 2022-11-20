@@ -78,7 +78,7 @@ class ThreadController extends Controller
      */
     public function edit($thread)
     {
-        $thread = $this->thread->find($thread);
+        $thread = $this->thread->whereSlug($thread)->first();
         return view('threads.edit', compact('thread'));
     }
 
@@ -86,13 +86,13 @@ class ThreadController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param string $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $thread)
     {
         try {
-            $thread = $this->thread->find($id);
+            $thread = $this->thread->whereSlug($thread)->first();
             $thread->update($request->all());
             dd('topico ATUALIZADO com sucesso');
         } catch (\Exception $e) {
