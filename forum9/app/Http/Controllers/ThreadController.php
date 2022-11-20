@@ -60,25 +60,25 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param string $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($thread)
     {
 
-        $thread = $this->thread->find($id);
+        $thread = $this->thread->whereSlug($thread)->first();
         return view('threads.show', compact('thread'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param string $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($thread)
     {
-        $thread = $this->thread->find($id);
+        $thread = $this->thread->find($thread);
         return view('threads.edit', compact('thread'));
     }
 
