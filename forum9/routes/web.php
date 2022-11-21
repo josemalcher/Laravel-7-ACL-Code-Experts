@@ -15,13 +15,13 @@ use App\Http\Controllers\ReplyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('threads.index');
 });
 
 Route::resource('threads', ThreadController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/replies/store', [App\Http\Controllers\ReplyController::class, 'store'])->name('replies.store');
