@@ -34,6 +34,16 @@
         <div class="col-12">
             <h5>Respostas</h5>
             <hr>
+            @foreach($thread->replies as $reply)
+                <div class="card" style="margin-bottom: 10px">
+                    <div class="card-body">
+                        {{ $reply->reply }}
+                    </div>
+                    <div class="card-footer">
+                        <small>Respondido por {{ $reply->user->name }} a {{ $reply->created_at->diffForHumans() }}</small>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
         <div class="col-12">
