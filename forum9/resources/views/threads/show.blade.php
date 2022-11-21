@@ -56,7 +56,7 @@
                     <label for="responder">Responder</label>
                     <textarea name="reply" cols="30" rows="5" class="form-control"></textarea>
                 </div>
-                <button type="submit">Responder</button>
+                <button type="submit" class="btn btn-success">Responder</button>
 
             </form>
         </div>

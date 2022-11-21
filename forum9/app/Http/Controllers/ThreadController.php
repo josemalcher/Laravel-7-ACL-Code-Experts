@@ -56,11 +56,22 @@ class ThreadController extends Controller
             $thread['slug'] = Str::slug($thread['title']);
 
             $user = User::find(1);
-            $user->threads()->create($thread);
+            $thread = $user->threads()->create($thread);
 
-            dd('topico criado com sucesso');
+            //dd('topico criado com sucesso');
+
+            flash('Tópico criado com sucesso')->success();
+            return redirect()->route('threads.show', $thread->slug);
+
         } catch (\Exception $e) {
-            dd($e->getMessage());
+
+            $message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar a requisição';
+
+            flash($message)->warning();
+
+            return redirect()->back();
+
+            //dd($e->getMessage());
         }
     }
 
@@ -104,9 +115,17 @@ class ThreadController extends Controller
         try {
             $thread = $this->thread->whereSlug($thread)->first();
             $thread->update($request->all());
-            dd('topico ATUALIZADO com sucesso');
+            //dd('topico ATUALIZADO com sucesso');
+
+            flash('Tópico atualizado com sucesso')->success();
+            return redirect()->route('threads.show', $thread->slug);
+
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            $message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar a requisição';
+
+            flash($message)->warning();
+
+            return redirect()->back();
         }
     }
 
@@ -121,9 +140,18 @@ class ThreadController extends Controller
         try {
             $thread = $this->thread->whereSlug($thread)->first();
             $thread->delete();
-            dd('topico REMOVIDO com sucesso');
+            // dd('topico REMOVIDO com sucesso');
+
+            flash('Topico removido com sucesso')->success();
+
+            return redirect()->route('threads.index');
+
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            $message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar a requisição';
+
+            flash($message)->warning();
+
+            return redirect()->back();
         }
     }
 }
