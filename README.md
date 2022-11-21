@@ -301,7 +301,20 @@ composer create-project --prefer-dist laravel/laravel:^7.0 forum
 
 ## <a name="parte25">25 - 22 - Iniciando Canais</a>
 
+```
 
+$ php artisan make:model Channel -m
+
+   INFO  Model [C:\Users\josem\Documents\workspaces\Laravel-7-ACL-Code-Experts\forum9\app/Models/Channel.php] created successfully.
+
+   INFO  Created migration [2022_11_21_180142_create_channels_table].  
+
+$ php artisan make:migration alter_threads_table --table=threads
+
+   INFO  Created migration [2022_11_21_180236_alter_threads_table].
+
+
+```
 
 [Voltar ao Índice](#indice)
 

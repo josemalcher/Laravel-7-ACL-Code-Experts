@@ -20,4 +20,9 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class)->orderBy('created_at', 'DESC');
     }
+
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
 }
