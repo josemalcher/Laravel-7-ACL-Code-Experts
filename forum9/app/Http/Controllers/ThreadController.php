@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{User, Thread};
+use App\Models\{User, Thread,Channel};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -25,9 +25,16 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Channel $channel)
     {
-        $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(10);
+        $channelParam = $request->channel;
+
+        if (null !== $channelParam) {
+            $threads = $channel->whereSlug($channelParam)->first()->threads()->paginate(10);
+        }else{
+            $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(10);
+        }
+
 
         return view('threads.index', compact('threads'));
     }

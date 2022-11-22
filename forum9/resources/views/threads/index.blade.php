@@ -11,7 +11,8 @@
             @forelse($threads as $thread)
                 <div class="list-group">
                     <a href="{{ route('threads.show', $thread->slug) }}" class="list-group-item list-group-item-action">
-                        <h5>{{$thread->title}}</h5>
+                        <h4>{{$thread->title}}</h4>
+                        <h6><span class="badge bg-primary">{{$thread->channel->name}}</span></h6>
                         <small>Criado em {{$thread->created_at->diffForHumans()}} por {{ $thread->user->name }}</small>
                     </a>
                 </div>
