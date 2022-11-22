@@ -54,7 +54,10 @@
                 <div class="form-group">
                     <input type="hidden" name="thread_id" value="{{$thread->id}}">
                     <label for="responder">Responder</label>
-                    <textarea name="reply" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="reply" cols="30" rows="5" class="form-control  @error('reply') is-invalid @enderror">{{old('reply')}}</textarea>
+                    @error('reply')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-success">Responder</button>
 

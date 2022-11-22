@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{User, Thread,Channel};
 use Illuminate\Http\Request;
+use App\Http\Requests\ThreadRequest;
 use Illuminate\Support\Str;
 
 
@@ -14,7 +15,7 @@ class ThreadController extends Controller
     /**
      * @param $thread
      */
-    public function __construct(\App\Models\Thread $thread)
+    public function __construct(Thread $thread)
     {
         $this->thread = $thread;
     }
@@ -27,6 +28,7 @@ class ThreadController extends Controller
      */
     public function index(Request $request, Channel $channel)
     {
+
         $channelParam = $request->channel;
 
         if (null !== $channelParam) {
@@ -57,7 +59,7 @@ class ThreadController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
         try {
 
@@ -119,9 +121,10 @@ class ThreadController extends Controller
      * @param string $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $thread)
+    public function update(ThreadRequest $request, $thread)
     {
         try {
+
             $thread = $this->thread->whereSlug($thread)->first();
             $thread->update($request->all());
             //dd('topico ATUALIZADO com sucesso');
