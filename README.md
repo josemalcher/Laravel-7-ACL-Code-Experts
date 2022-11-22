@@ -482,7 +482,26 @@ $ php artisan make:policy ThreadPolicy
 
 ## <a name="parte43">43 - 38 - Mapeando Recursos e Papéis</a>
 
+```
+$ php artisan make:migration create_roles_table
 
+   INFO  Created migration [2022_11_22_222402_create_roles_table].
+
+$ php artisan make:model Role
+
+   INFO  Model [C:\Users\josem\Documents\workspaces\Laravel-7-ACL-Code-Experts\forum9\app/Models/Role.php] created successfully.
+
+$ php artisan make:model Resource -m
+
+   INFO  Model [C:\Users\josem\Documents\workspaces\Laravel-7-ACL-Code-Experts\forum9\app/Models/Resource.php] created successfully.
+
+   INFO  Created migration [2022_11_22_222541_create_resources_table].  
+
+$ php artisan make:migration alter_table_users_table --table=users
+
+   INFO  Created migration [2022_11_22_232142_alter_table_users_table].
+
+```
 
 [Voltar ao Índice](#indice)
 
