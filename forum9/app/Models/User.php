@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Thread::class);
     }
+
+    public function isAdmin()
+    {
+        return false;
+    }
 }

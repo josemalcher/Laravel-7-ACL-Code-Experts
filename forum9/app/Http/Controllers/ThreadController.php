@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use App\Models\{User, Thread,Channel};
 use Illuminate\Http\Request;
 use App\Http\Requests\ThreadRequest;
@@ -28,6 +29,12 @@ class ThreadController extends Controller
      */
     public function index(Request $request, Channel $channel)
     {
+        // $this->authorize('access-index-forum');
+
+        // if (!Gate::allows('access-index-forum')) {
+//        if (Gate::denies('access-index-forum')) {
+//            return dd('não tenho permissão');
+//        }
 
         $channelParam = $request->channel;
 

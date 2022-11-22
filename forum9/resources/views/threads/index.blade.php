@@ -16,7 +16,9 @@
                             <h6><span class="badge bg-primary">{{$thread->channel->name}}</span></h6>
                             <small>Criado em {{$thread->created_at->diffForHumans()}} por {{ $thread->user->name }}</small>
                         </div>
-                        <span class="badge bg-info">{{$thread->replies->count()}}</span>
+                        @can('access-index-forum')
+                            <span class="badge bg-info">{{$thread->replies->count()}}</span>
+                        @endcan
                     </a>
                 </div>
             @empty
