@@ -9,7 +9,7 @@ class Thread extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'body', 'slug'];
+    protected $fillable = ['title', 'body', 'slug', 'channel_id'];
 
     public function user()
     {

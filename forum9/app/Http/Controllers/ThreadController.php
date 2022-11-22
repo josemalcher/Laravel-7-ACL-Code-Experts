@@ -44,9 +44,11 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Channel $channel)
     {
-        return view('threads.create');
+        return view('threads.create', [
+            'channels' => $channel->all(),
+        ]);
     }
 
     /**
