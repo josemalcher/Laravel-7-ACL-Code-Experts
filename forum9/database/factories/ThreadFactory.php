@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Thread;
+use App\Models\Thread;
+use App\Models\Channel;
+use \App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Thread>
@@ -19,10 +21,21 @@ class ThreadFactory extends Factory
     // protected $model = Thread::class;
     public function definition()
     {
+        $title = fake()->sentence;
         return [
-            'title' => fake()->sentence,
+            'title' => $title,
             'body' => fake()->paragraph(2),
-            'slug' => fake()->slug
+            'slug' => \Illuminate\Support\Str::slug($title),
+            'channel_id' => Channel::factory(),
+            'user_id' => User::factory(),
+//            'channel_id' => function (array $attributes) {
+//                //return \App\Models\Channel::factory()->create();
+//                return Channel::find($attributes['channel_id'])->type;
+//            },
+//            'user_id' => function (array $attributes) {
+//                //return \App\Models\User::factory()->create();
+//                return User::find($attributes['user_id'])->type;
+//            },
 
         ];
     }
