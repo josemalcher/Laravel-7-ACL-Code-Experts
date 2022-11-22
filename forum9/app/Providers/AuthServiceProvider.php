@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Model' => 'App\Policies\ThreadPolicy',
     ];
 
     /**
@@ -27,8 +27,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('access-index-forum', function (User $user) {
+       /* Gate::define('access-index-forum', function (User $user) {
             return $user->isAdmin();
-        });
+        });*/
     }
 }

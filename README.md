@@ -440,7 +440,13 @@ $ php artisan make:migration alter_threads_table --table=threads
 
 ## <a name="parte39">39 - 35 - Policies na Prática</a>
 
+```
+$ php artisan make:policy ThreadPolicy
 
+   INFO  Policy [C:\Users\josem\Documents\workspaces\Laravel-7-ACL-Code-Experts\forum9\app/Policies/ThreadPolicy.php] created successfully.
+
+
+```
 
 [Voltar ao Índice](#indice)
 
