@@ -533,7 +533,114 @@ $ php artisan make:migration create_resource_role_table
 
 ## <a name="parte46">46 - 41 - Testando Relações</a>
 
+```
+> $role = \App\Models\Role::create(['name'=>'User', 'role'=> 'ROLE_USER']);                                                                                                                                                                    
+= App\Models\Role {#4686
+    name: "User",
+    role: "ROLE_USER",
+    updated_at: "2022-11-23 00:18:13",
+    created_at: "2022-11-23 00:18:13",
+    id: 1,
+  }
 
+> $user = \App\Models\User::first();                                                                                                                                                                                                   
+= App\Models\User {#4700
+    id: 1,
+    name: "Allan Ramos Neto",
+    email: "wromero@example.com",
+    email_verified_at: "2022-11-23 00:03:56",
+    #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+    #remember_token: "t45HDGaNTB",
+    created_at: "2022-11-23 00:03:56",
+    updated_at: "2022-11-23 00:03:56",
+    role_id: null,
+  }
+
+> $user->role()->associate($role);                                                                                                                                                                                                     
+= App\Models\Role {#4704
+    id: 1,
+    name: "User",
+    name: "Allan Ramos Neto",
+    email: "wromero@example.com",
+    email_verified_at: "2022-11-23 00:03:56",
+    #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+    #remember_token: "t45HDGaNTB",
+    created_at: "2022-11-23 00:03:56",
+    updated_at: "2022-11-23 00:03:56",
+    role_id: 1,
+    role: App\Models\Role {#4704
+      id: 1,
+      name: "User",
+      role: "ROLE_USER",
+      created_at: "2022-11-23 00:18:13",
+      updated_at: "2022-11-23 00:18:13",
+    },
+  }
+
+> $resource = \App\Models\Resource::create(['name'=>'Listar Topicos', 'resource'=> 'threads/index', 'is_menu'=> true]);                                                                                                                
+= App\Models\Resource {#4705
+    name: "Listar Topicos",
+    resource: "threads/index",
+    is_menu: true,
+    updated_at: "2022-11-23 00:25:03",
+    created_at: "2022-11-23 00:25:03",
+    id: 1,
+  }
+> $resource->roles()->sync([1]);                                                                                                                                                                                                       
+= [
+    "attached" => [
+      1,
+    ],
+    "detached" => [],
+    "updated" => [],
+  ]
+
+> $role->resources;                                                                                                                                                                                                                    
+= Illuminate\Database\Eloquent\Collection {#4692
+    all: [
+      App\Models\Resource {#4703
+        id: 1,
+        name: "Listar Topicos",
+        resource: "threads/index",
+        is_menu: 1,
+        created_at: "2022-11-23 00:25:03",
+        updated_at: "2022-11-23 00:25:03",
+        pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4697
+          role_id: 1,
+          resource_id: 1,
+        },
+      },
+    ],
+  }
+
+
+> $role = \App\Models\Role::first()                                                                                                                                                                                                    
+= App\Models\Role {#4716
+    id: 1,
+    name: "User",
+    role: "ROLE_USER",
+    created_at: "2022-11-23 00:18:13",
+    updated_at: "2022-11-23 00:18:13",
+  }
+
+> $role->users;                                                                                                                                                                                                                        
+= Illuminate\Database\Eloquent\Collection {#4710
+    all: [
+      App\Models\User {#4713
+        id: 1,
+        name: "Allan Ramos Neto",
+        email: "wromero@example.com",
+        email_verified_at: "2022-11-23 00:03:56",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "t45HDGaNTB",
+        created_at: "2022-11-23 00:03:56",
+        updated_at: "2022-11-23 00:29:20",
+        role_id: 1,
+      },
+    ],
+  }
+
+```
 
 [Voltar ao Índice](#indice)
 
