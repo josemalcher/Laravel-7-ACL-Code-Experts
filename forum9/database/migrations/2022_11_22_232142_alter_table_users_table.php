@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('role_id')
             ->references('id')
             ->on('roles')
-            ->onDelete('SET_NULL');
+            ->onDelete('SET NULL');
 
 
         });

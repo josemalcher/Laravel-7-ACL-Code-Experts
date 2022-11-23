@@ -510,7 +510,12 @@ $ php artisan make:migration alter_table_users_table --table=users
 
 ## <a name="parte44">44 - 39 - Relação de Papéis e Recursos</a>
 
+```
+$ php artisan make:migration create_resource_role_table
 
+   INFO  Created migration [2022_11_22_234941_create_resource_role_table].
+
+```
 
 [Voltar ao Índice](#indice)
 
