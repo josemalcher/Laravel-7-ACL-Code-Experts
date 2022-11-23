@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Resource extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'resource', 'is_menu'];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
 }
