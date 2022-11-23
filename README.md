@@ -672,7 +672,46 @@ $ php artisan make:middleware AccessControlMiddleware
 
 ## <a name="parte49">49 - 44 - Dinamizando Check de Controle de Acesso</a>
 
+```
+> $r = \App\Models\Resource::find(2);                                                                                                                                                                                                  
+= App\Models\Resource {#4697
+    id: 2,
+    name: "Listar Topicos",
+    resource: "threads.create",
+    is_menu: 1,
+    created_at: "2022-11-23 00:35:26",
+    updated_at: "2022-11-23 00:35:26",
+  }
 
+> $r->roles()->sync([1]);                                                                                                                                                                                                              
+= [
+    "attached" => [
+      1,
+    ],
+    "detached" => [],
+    "updated" => [],
+  ]
+
+> $r->roles;                                                                                                                                                                                                                           
+= Illuminate\Database\Eloquent\Collection {#4699
+    all: [
+      App\Models\Role {#4707
+        id: 1,
+        name: "User",
+        role: "ROLE_USER",
+        created_at: "2022-11-23 00:18:13",
+        updated_at: "2022-11-23 00:18:13",
+        pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4703
+          resource_id: 2,
+          role_id: 1,
+        },
+      },
+    ],
+  }
+
+
+
+```
 
 [Voltar ao Índice](#indice)
 
