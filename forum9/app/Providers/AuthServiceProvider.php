@@ -30,5 +30,14 @@ class AuthServiceProvider extends ServiceProvider
        /* Gate::define('access-index-forum', function (User $user) {
             return $user->isAdmin();
         });*/
+
+        $resources = \App\Models\Resource::all();
+
+        foreach ($resources as $resource) {
+            Gate::define($resource->resource, function ($user) use ($resource) {
+                return $resource->roles->contains($user->role);
+            });
+        }
+        // dd(Gate::abilities());
     }
 }

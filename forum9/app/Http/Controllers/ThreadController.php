@@ -36,6 +36,8 @@ class ThreadController extends Controller
 //            return dd('não tenho permissão');
 //        }
 
+        // $this->authorize('threads/index');
+
         $channelParam = $request->channel;
 
         if (null !== $channelParam) {
