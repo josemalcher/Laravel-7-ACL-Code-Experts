@@ -658,7 +658,12 @@ $ php artisan make:migration create_resource_role_table
 
 ## <a name="parte48">48 - 43 - Globalizando Controle de Acesso</a>
 
+```
+$ php artisan make:middleware AccessControlMiddleware
 
+   INFO  Middleware [C:\Users\josem\Documents\workspaces\Laravel-7-ACL-Code-Experts\forum9\app/Http/Middleware/AccessControlMiddleware.php] created successfully.
+
+```
 
 [Voltar ao Índice](#indice)
 

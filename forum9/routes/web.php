@@ -18,7 +18,10 @@ Route::get('/', function () {
     return redirect()->route('threads.index');
 });
 
-Route::resource('threads', ThreadController::class);
+Route::group(['middleware' => 'access.control.list'], function (){
+    Route::resource('threads', ThreadController::class);
+});
+
 
 Auth::routes();
 
