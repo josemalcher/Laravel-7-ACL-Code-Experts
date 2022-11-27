@@ -2,11 +2,11 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
 
-            @foreach(auth()->user()->role->resources()->where('is_menu', true)->get() as $resource)
+            @foreach($menus as $m)
             <li class="nav-item">
-                <a class="nav-link @if(request()->is('manager/users*')) active @endif" href="{{route($resource->resource)}}">
+                <a class="nav-link" href="{{route($m->resource)}}">
                     <span data-feather="file"></span>
-                    {{$resource->name}}
+                    {{$m->name}}
                 </a>
             </li>
             @endforeach
