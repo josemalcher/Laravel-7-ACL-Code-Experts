@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\ResourceRequest;
-use App\Resource;
+use App\Models\Resource;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller

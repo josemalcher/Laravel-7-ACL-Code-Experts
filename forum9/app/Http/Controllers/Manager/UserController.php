@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\UserRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -40,7 +40,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->find($id);
-        $roles = \App\Role::all('id', 'name');
+        $roles = \App\Models\Role::all('id', 'name');
 
         return view('manager.users.edit', compact('user', 'roles'));
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
 			$user = $this->user->find($id);
 			$user->update($data);
 
-			$role = \App\Role::find($data['role']);
+			$role = \App\Models\Role::find($data['role']);
 			$user = $user->role()->associate($role);
 			$user->save();
 

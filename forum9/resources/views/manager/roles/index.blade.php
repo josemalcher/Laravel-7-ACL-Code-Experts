@@ -21,7 +21,7 @@
             @forelse($roles as $role)
                 <tr>
                     <td>{{$role->id}}</td>
-                    <td>{{$role->name}}: <span class="badge badge-danger">{{$role->role}}</span></td>
+                    <td>{{$role->name}}: <span class="badge bg-danger">{{$role->role}}</span></td>
                     <td>{{$role->created_at->format('d/m/Y H:i:s')}}</td>
                     <td>
                         <div class="btn-group">

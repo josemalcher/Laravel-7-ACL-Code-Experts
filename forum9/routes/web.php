@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\{ThreadController, ReplyController};
+use App\Http\Controllers\Manager\{RoleController, UserController, ResourceController};
 
 
 /*
@@ -28,10 +29,10 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/replies/store', [App\Http\Controllers\ReplyController::class, 'store'])->name('replies.store');
+Route::post('/replies/store', [ReplyController::class, 'store'])->name('replies.store');
 
 // 'middleware' => 'auth','namespace' => 'Manager',
-Route::group(['namespace' => 'Manager', 'prefix' => 'manager'], function () {
+Route::group(['middleware' => 'auth','namespace' => 'Manager','prefix' => 'manager'], function () {
     Route::get('/', function () {
         return redirect()->route('users.index');
     });

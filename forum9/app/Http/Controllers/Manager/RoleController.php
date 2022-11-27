@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\RoleRequest;
-use App\Role;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -143,7 +143,7 @@ class RoleController extends Controller
 	public function syncResources(int $role)
 	{
 		$role = $this->role->find($role);
-		$resources = \App\Resource::all(['id', 'resource']);
+		$resources = \App\Models\Resource::all(['id', 'resource']);
 
 		return view('manager.roles.sync-resources', compact('role', 'resources'));
 	}

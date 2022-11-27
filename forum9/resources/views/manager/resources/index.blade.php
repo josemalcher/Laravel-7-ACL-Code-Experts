@@ -21,7 +21,7 @@
             @forelse($resources as $resource)
                 <tr>
                     <td>{{$resource->id}}</td>
-                    <td>{{$resource->name}}: <span class="badge badge-primary">{{$resource->resource}}</span></td>
+                    <td>{{$resource->name}}: <span class="badge bg-primary">{{$resource->resource}}</span></td>
                     <td>{{$resource->created_at->format('d/m/Y H:i:s')}}</td>
                     <td>
                         <div class="btn-group">
