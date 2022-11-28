@@ -819,7 +819,91 @@ $ php artisan make:middleware AccessControlMiddleware
 
 ## <a name="parte61">61 - 55 - Filtrando Recursos Por Papél</a>
 
+```
+> $role = \App\Models\Role::find(1)                                                                                                                                                                                
+= App\Models\Role {#4674
+    id: 1,
+    name: "User",
+    role: "ROLE_USER",
+    created_at: "2022-11-23 00:18:13",
+    updated_at: "2022-11-23 00:18:13",
+  }
 
+> $role->resources;                                                                                                                                                                                                
+= Illuminate\Database\Eloquent\Collection {#4690
+    all: [
+      App\Models\Resource {#4688
+        id: 1,
+        module_id: 1,
+        name: "Listar Topicos",
+        resource: "threads.index",
+        is_menu: 1,
+        created_at: "2022-11-23 00:25:03",
+        updated_at: "2022-11-27 23:12:51",
+        pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4687
+          role_id: 1,
+          resource_id: 1,
+        },
+      },
+      App\Models\Resource {#4680
+        id: 2,
+        module_id: null,
+        name: "Criar Topicos",
+        resource: "threads.create",
+        is_menu: 1,
+        created_at: "2022-11-23 00:35:26",
+        updated_at: "2022-11-23 00:35:26",
+        pivot: Illuminate\Database\Eloquent\Relations\Pivot {#4689
+          role_id: 1,
+          resource_id: 2,
+        },
+      },
+    ],
+  }
+
+> $resource = \App\Models\Resource::find(2)                                                                                                                                                                        
+= App\Models\Resource {#4676
+    id: 2,
+    module_id: null,
+    name: "Criar Topicos",
+    resource: "threads.create",
+    is_menu: 1,
+    created_at: "2022-11-23 00:35:26",
+    updated_at: "2022-11-23 00:35:26",
+  }
+
+ $resource->module()->associate(\App\Models\Module::find(1));                                                                                                                                                     
+= App\Models\Resource {#4676
+    id: 2,
+    module_id: 1,
+    name: "Criar Topicos",
+    resource: "threads.create",
+    is_menu: 1,
+    created_at: "2022-11-23 00:35:26",
+    updated_at: "2022-11-23 00:35:26",
+    module: App\Models\Module {#4678
+      id: 1,
+      name: "Configurações",
+      created_at: "2022-11-27 23:10:53",
+      updated_at: "2022-11-27 23:10:53",
+    },
+  }
+
+> $resource->save();                                                                                                                                                                                               
+= true
+
+
+> $role->resources()->sync([2]);                                                                                                                                                                                   
+= [
+    "attached" => [],
+    "detached" => [
+      1,
+    ],
+    "updated" => [],
+  ]
+
+
+```
 
 [Voltar ao Índice](#indice)
 
