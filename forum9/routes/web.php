@@ -57,3 +57,11 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Manager', 'prefix' => 'man
     Route::resource('users', 'UserController');
     Route::resource('resources', 'ResourceController');
 });*/
+
+
+/*
+Route::get('routes', function (){
+    foreach (Route::getRoutes()->getRoutes() as $route) {
+        print $route->getName() . '<hr>';
+    }
+});*/
