@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+
 // use Illuminate\Auth\Access\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -27,14 +28,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-       /* Gate::define('access-index-forum', function (User $user) {
-            return $user->isAdmin();
-        });*/
+        /* Gate::define('access-index-forum', function (User $user) {
+             return $user->isAdmin();
+         });*/
+
+        if(!Schema::hasTable('resources')) return null;
 
         $resources = \App\Models\Resource::all();
 
-        Gate::before(function ($user){
-            return $user->isAdmin();
+        Gate::before(function ($user) {
+            if ($user->isAdmin()) {
+                return true;
+            }
         });
 
         foreach ($resources as $resource) {

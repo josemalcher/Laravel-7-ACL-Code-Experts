@@ -2,36 +2,58 @@
 
 namespace App\Http\Views;
 
+use App\Models\Module;
+
 class MenuViewComposer
 {
+    private $module;
+
+    public function __construct(Module $module)
+    {
+        $this->module = $module;
+    }
 
     public function composer($view)
     {
+        $user = auth()->user();
 
-        $roleUser = auth()->user()->role;
+        $modulesFiltered = session()->get('modules') ?: [];
 
-        $modulesFiltred = session()->get('modules') ?: [];
+        if (!$modulesFiltered) {
 
-        if (!$modulesFiltred) {
-            foreach ($roleUser->modules as $key => $module) {
+            if ($user->isAdmin()) {
 
-                $modulesFiltred[$key]['name'] = $module->name;
+                $modulesFiltered = ($this->getModules($this->module))->toArray();
 
-                foreach ($module->resources as $resource) {
-                    if ($resource->roles->contains($roleUser)) {
-                        $modulesFiltred[$key]['resources'][] = $resource;
+            } else {
+
+                $modules = $this->getModules($user->role->modules());
+
+                foreach ($modules as $key => $module) {
+                    $modulesFiltered[$key]['name'] = $module->name;
+
+                    foreach ($module->resources as $k => $resource) {
+                        if ($resource->roles->contains($user->role)) {
+
+                            $modulesFiltered[$key]['resources'][$k]['name'] = $resource->name;
+                            $modulesFiltered[$key]['resources'][$k]['resource'] = $resource->resource;
+                        }
                     }
                 }
+
             }
 
-            dump('Dentro do if de geração dos menus');
-            session()->put('modules', $modulesFiltred);
+            session()->put('modules', $modulesFiltered);
         }
 
+        return $view->with('modules', $modulesFiltered);
+    }
 
-        // dd($modulesFiltred);
-
-        return $view->with('modules', $modulesFiltred);
+    public function getModules($module)
+    {
+        return $module->with(['resources' => function ($queryBuilder) {
+            return $queryBuilder->where('is_menu', true);
+        }])->get();
     }
 
 
