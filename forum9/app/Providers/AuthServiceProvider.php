@@ -33,6 +33,10 @@ class AuthServiceProvider extends ServiceProvider
 
         $resources = \App\Models\Resource::all();
 
+        Gate::before(function ($user){
+            return $user->isAdmin();
+        });
+
         foreach ($resources as $resource) {
             Gate::define($resource->resource, function ($user) use ($resource) {
                 return $resource->roles->contains($user->role);
