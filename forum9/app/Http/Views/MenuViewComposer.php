@@ -10,7 +10,7 @@ class MenuViewComposer
 
         $roleUser = auth()->user()->role;
 
-        $modulesFiltred = session()->get('modules');
+        $modulesFiltred = session()->get('modules') ?: [];
 
         if (!$modulesFiltred) {
             foreach ($roleUser->modules as $key => $module) {

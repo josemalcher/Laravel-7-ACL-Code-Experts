@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{ThreadController, ReplyController};
-use App\Http\Controllers\Manager\{RoleController, UserController, ResourceController};
+use App\Http\Controllers\Manager\{RoleController, UserController, ResourceController, ModuleController};
 
 
 /*
@@ -41,8 +41,14 @@ Route::group(['middleware' => ['auth','access.control.list'],'namespace' => 'Man
     Route::get('roles/{role}/resources', [RoleController::class, 'syncResources'])->name('roles.resources');
     Route::put('roles/{role}/resources', [RoleController::class, 'updateSyncResources'])->name('roles.resources.update');
 
+    Route::resource('modules', 'ModuleController');
+    Route::get('modules/{module}/resources', [ModuleController::class, 'syncResources'])->name('modules.resources');
+    Route::put('modules/{module}/resources', [ModuleController::class, 'updateSyncResources'])->name('modules.resources.update');
+
     Route::resource('users', UserController::class);
     Route::resource('resources', ResourceController::class);
+
+
 });
 /*
 Route::group(['middleware' => 'auth', 'namespace' => 'Manager', 'prefix' => 'manager'], function(){
