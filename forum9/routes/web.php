@@ -32,7 +32,7 @@ Auth::routes();
 Route::post('/replies/store', [ReplyController::class, 'store'])->name('replies.store');
 
 // 'middleware' => 'auth','namespace' => 'Manager',
-Route::group(['middleware' => 'auth','namespace' => 'Manager','prefix' => 'manager'], function () {
+Route::group(['middleware' => ['auth','access.control.list'],'namespace' => 'Manager','prefix' => 'manager'], function () {
     Route::get('/', function () {
         return redirect()->route('users.index');
     });

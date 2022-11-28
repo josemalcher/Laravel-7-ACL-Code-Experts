@@ -912,7 +912,33 @@ $ php artisan make:middleware AccessControlMiddleware
 
 ## <a name="parte62">62 - 56 - Nosso ACL no Manager</a>
 
+```
+> $resource = new \App\Models\Resource();                                                                                                                                                                          
+= App\Models\Resource {#4681}
 
+> $resource->name = 'Listar Recursos';                                                                                                                                                                             
+= "Listar Recursos"
+
+> $resource->resource = 'resources.index';                                                                                                                                                                         
+= "resources.index"
+
+> $resource->is_menu = true;                                                                                                                                                                                       
+= true
+
+> $resource->save();                                                                                                                                                                                               
+= true
+
+> $resource->roles()->sync([1]);                                                                                                                                                                                   
+= [
+    "attached" => [
+      1,
+    ],
+    "detached" => [],
+    "updated" => [],
+  ]
+
+
+```
 
 [Voltar ao Índice](#indice)
 
